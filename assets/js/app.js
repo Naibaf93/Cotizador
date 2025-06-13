@@ -2,7 +2,7 @@ function cargarContenido() {
     // funcion que cargue las cotizaciones
     cargarCotizaciones(mostrarCotizacion);
     // funcion que cargue los elementos
-
+    cargarElementos();
     // funcion que cargue los textos
 
 }
@@ -37,4 +37,9 @@ async function crearPedido(url){
         }
         xhr.send();
     })
+}
+
+function cargarElementos(){
+    document.getElementById('imgLogo').setAttribute('src', 'assets/img/logo.png');
+    document.getElementById('titulo').textContent = "Cotizaciones online";
 }
