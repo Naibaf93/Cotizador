@@ -4,10 +4,12 @@ function cargarContenido() {
     // funcion que cargue los elementos
     cargarElementos();
     // funcion que cargue los textos
-
+    cargarTextos();
 }
 
 async function cargarCotizaciones(callback) {
+    
+    await delay(2500);
     
     let promesa1 = await fetch('https://api.coindesk.com/v1/bpi/currentprice.json')
     callback(await promesa1.json());
@@ -18,6 +20,9 @@ async function cargarCotizaciones(callback) {
 
     let datos3 = await crearPedido('https://open.er-api.com/v6/latest/ARS');
     document.getElementById('usdArs').append(datos3.rates.USD);
+
+    document.getElementById('imgEspera').style.visibility = 'hidden';
+
 }
 
 function mostrarCotizacion(datos){
@@ -42,4 +47,18 @@ async function crearPedido(url){
 function cargarElementos(){
     document.getElementById('imgLogo').setAttribute('src', 'assets/img/logo.png');
     document.getElementById('titulo').textContent = "Cotizaciones online";
+    document.getElementById('imgEspera').setAttribute('src', 'assets/img/loading.gif');
+    document.getElementById('imgEspera').style.visibility = 'visible';
+}
+
+function cargarTextos() {
+    document.getElementById('usdEur').append("EUR a USD: ");
+    document.getElementById('usdArs').append("ARG a USD: ");
+    document.getElementById('btc').append("Bitcoin a USD: ");
+}
+
+function delay(ms){
+    return new Promise(function(res){
+        setTimeout(res, ms);
+    })
 }
